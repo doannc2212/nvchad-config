@@ -41,7 +41,7 @@ local sources = {
   -- cpp
   b.formatting.clang_format,
 
-  require "typescript.extensions.null-ls.code-actions",
+  b.code_actions.eslint,
 }
 
 null_ls.setup {

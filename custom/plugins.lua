@@ -31,11 +31,23 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
   },
 
   {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
+  },
+
+  {
+    "numToStr/Comment.nvim",
+    config = function(_)
+      require("Comment").setup {
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      }
+    end,
   },
 
   -- Install a plugin
@@ -59,13 +71,21 @@ local plugins = {
   },
 
   {
-    "jose-elias-alvarez/typescript.nvim",
+    "pmizio/typescript-tools.nvim",
   },
 
   {
-    "andweeb/presence.nvim",
+    "folke/trouble.nvim",
+    dependencies = { "nvim-tree/nvim-web-devicons" },
     lazy = false,
     config = true,
+  },
+  {
+    "andweeb/presence.nvim",
+    lazy = false,
+    config = function()
+      require("presence").setup(overrides.presence)
+    end,
   },
 
   -- All NvChad plugins are lazy-loaded by default
