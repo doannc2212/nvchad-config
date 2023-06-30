@@ -3,6 +3,12 @@ local M = {}
 
 M.general = {
   n = {
+    ["<leader>fr"] = {
+      function()
+        require("spectre").open()
+      end,
+      desc = "Replace in files (Spectre)",
+    },
     ["<leader>n"] = { "<cmd> NvimTreeToggle <CR>", "Toggle nvimtree" },
     ["<leader><space>"] = { "<cmd> Telescope find_files <CR>", "Find files" },
     ["<leader>,"] = { "<cmd>TroubleToggle workspace_diagnostics<cr>", "Toggle workspace diagnostics" },

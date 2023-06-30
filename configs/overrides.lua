@@ -2,6 +2,10 @@ local M = {}
 
 M.treesitter = {
   ensure_installed = {
+    "astro",
+    "bash",
+    "cpp",
+    "dart",
     "vim",
     "lua",
     "html",
@@ -13,7 +17,9 @@ M.treesitter = {
     "markdown",
     "markdown_inline",
     "vue",
+    "yaml",
   },
+  highlight = { enable = true },
   indent = {
     enable = true,
     -- disable = {
@@ -27,16 +33,20 @@ M.treesitter = {
 
 M.mason = {
   ensure_installed = {
+    "bashls",
+
     -- lua stuff
     "lua-language-server",
     "stylua",
 
     -- web dev stuff
+    "astro",
     "css-lsp",
     "html-lsp",
-    "typescript-language-server",
+    -- "typescript-language-server",
     "deno",
     "prettier",
+    "eslint_d",
 
     -- c/cpp stuff
     "clangd",
@@ -46,19 +56,15 @@ M.mason = {
 
 -- git support in nvimtree
 M.nvimtree = {
-  git = {
-    enable = true,
-  },
+  git = { enable = true },
 
   renderer = {
     highlight_git = true,
-    icons = {
-      show = {
-        git = true,
-      },
-    },
+    icons = { show = { git = true } },
   },
 }
+
+-- Discord presence
 M.presence = {
   auto_update = true,
   log_level = nil,
@@ -74,6 +80,60 @@ M.presence = {
   reading_text = "Reading %s",
   workspace_text = "Working on %s",
   line_number_text = "Line %s out of %s",
+}
+
+M.flutters = {
+  -- https://github.com/akinsho/flutter-tools.nvim
+}
+
+M.copilot = {
+  -- Possible configurable fields can be found on:
+  -- https://github.com/zbirenbaum/copilot.lua#setup-and-configuration
+  panel = {
+    enabled = true,
+    auto_refresh = false,
+    keymap = {
+      jump_prev = "[[",
+      jump_next = "]]",
+      accept = "<CR>",
+      refresh = "gr",
+      open = "<M-CR>",
+    },
+    layout = {
+      position = "bottom", -- | top | left | right
+      ratio = 0.4,
+    },
+  },
+  suggestion = {
+    enabled = true,
+    auto_trigger = true,
+    debounce = 75,
+    keymap = {
+      accept = "<M-l>",
+      accept_word = false,
+      accept_line = false,
+      next = "<M-]>",
+      prev = "<M-[>",
+      dismiss = "<C-]>",
+    },
+  },
+  filetypes = {
+    yaml = false,
+    markdown = false,
+    help = false,
+    gitcommit = false,
+    gitrebase = false,
+    hgcommit = false,
+    svn = false,
+    cvs = false,
+    ["."] = false,
+  },
+  copilot_node_command = "node", -- Node.js version must be > 16.x
+  -- server_opts_overrides = {},
+}
+
+M.spectre = {
+  open_cmd = "noswapfile vnew",
 }
 
 return M

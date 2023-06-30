@@ -70,21 +70,56 @@ local plugins = {
     config = true,
   },
 
+  -- Upgraded tsserver
   {
     "pmizio/typescript-tools.nvim",
   },
 
+  -- Flutter language server
+  {
+    "akinsho/flutter-tools.nvim",
+    lazy = false,
+    config = function()
+      require("flutter-tools").setup(overrides.flutter)
+    end,
+  },
+
+  -- show diagnostic
   {
     "folke/trouble.nvim",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     lazy = false,
     config = true,
   },
+
+  -- Discord presence
   {
     "andweeb/presence.nvim",
-    lazy = false,
+    event = "VeryLazy",
     config = function()
       require("presence").setup(overrides.presence)
+    end,
+  },
+
+  -- lua version github copilot
+  {
+    "zbirenbaum/copilot.lua",
+    -- Lazy load when event occurs. Events are triggered
+    -- as mentioned in:
+    -- https://vi.stackexchange.com/a/4495/20389
+    event = "InsertEnter",
+    -- You can also have it load at immediately at
+    -- startup by commenting above and uncommenting below:
+    lazy = false,
+    opts = overrides.copilot,
+  },
+
+  -- search/replace in multiple files
+  {
+    "nvim-pack/nvim-spectre",
+    cmd = "Spectre",
+    config = function()
+      require("spectre").setup(overrides.spectre)
     end,
   },
 

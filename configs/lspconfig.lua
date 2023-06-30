@@ -20,7 +20,7 @@ require("typescript-tools").setup {
 -- lspconfig.pyright.setup { blabla}
 
 -- lspconfig.volar.setup {
---   filetypes = { "typescript", "javascript", "javascriptreact", "vue", "json" },
+--   filetypes = { "typescript", "javascript", "vue", "json" },
 --   on_attach = on_attach,
 --   capabilities = capabilities,
 -- }
