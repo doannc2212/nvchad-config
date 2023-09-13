@@ -33,7 +33,7 @@ local sources = {
 
   -- webdev stuff
   b.formatting.deno_fmt, -- choosed deno for ts/js files cuz its very fast!
-  b.formatting.prettier,
+  b.formatting.prettierd,
   b.formatting.eslint_d.with { extra_filetypes = { "astro" } },
 
   -- Lua
@@ -44,6 +44,7 @@ local sources = {
 
   b.completion.spell,
   b.diagnostics.eslint_d.with { extra_filetypes = { "astro" } },
+  b.code_actions.eslint_d.with { extra_filetypes = { "astro" } },
 }
 
 null_ls.setup {
