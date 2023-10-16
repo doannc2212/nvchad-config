@@ -25,6 +25,14 @@ M.general = {
       end,
       "Goto next",
     },
+    ["gd"] = {
+      function()
+        require("telescope.builtin").lsp_definitions { reuse_win = true }
+      end,
+      "Goto Definition",
+    },
+    ["<M-o>"] = { "<cmd> TSToolsOrganizeImports<CR>", "Sorts and removes unused imports" },
+    ["<leader>."] = { "<cmd> TSToolsFixAll<CR>", "Fixes all fixable errors" },
   },
 }
 
