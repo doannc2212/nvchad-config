@@ -42,7 +42,7 @@ local sources = {
   -- cpp
   b.formatting.clang_format,
 
-  b.completion.spell,
+  -- b.completion.spell,
   b.diagnostics.eslint_d.with { extra_filetypes = { "astro" } },
   b.code_actions.eslint_d.with { extra_filetypes = { "astro" } },
 }

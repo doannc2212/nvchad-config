@@ -26,9 +26,9 @@ M.treesitter = {
     --   "python"
     -- },
   },
-  context_commentstring = {
-    enable = true,
-  },
+  -- context_commentstring = {
+  --   enable = true,
+  -- },
 }
 
 M.mason = {
@@ -57,6 +57,11 @@ M.mason = {
 -- git support in nvimtree
 M.nvimtree = {
   git = { enable = true },
+
+  view = {
+    adaptive_size = true,
+    side = "left",
+  },
 
   renderer = {
     highlight_git = true,
