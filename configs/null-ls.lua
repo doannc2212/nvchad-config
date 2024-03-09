@@ -1,4 +1,4 @@
-local null_ls = pcall(require, "null-ls")
+local present, null_ls = pcall(require, "null-ls")
 local eslint_config = {
   extra_filetypes = { "astro" },
   condition = function(utils)
