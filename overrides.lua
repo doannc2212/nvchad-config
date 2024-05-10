@@ -2,9 +2,7 @@ local M = {}
 
 M.treesitter = {
   ensure_installed = {
-    "astro",
     "bash",
-    "cpp",
     "dart",
     "vim",
     "lua",
@@ -13,11 +11,9 @@ M.treesitter = {
     "javascript",
     "typescript",
     "tsx",
-    "c",
     "markdown",
     "markdown_inline",
     "vue",
-    "yaml",
   },
   highlight = { enable = true },
   indent = {

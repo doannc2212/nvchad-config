@@ -1,10 +1,13 @@
+require "nvchad.options"
+
+
+local o = vim.opt
 local autocmd = vim.api.nvim_create_autocmd
 
--- Auto resize panes when resizing nvim window
 autocmd("VimResized", {
   pattern = "*",
   command = "tabdo wincmd =",
 })
 
-vim.opt.relativenumber = true
-vim.opt.updatetime = 100
+o.relativenumber = true
+o.updatetime = 100
