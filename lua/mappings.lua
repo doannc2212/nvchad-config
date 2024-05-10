@@ -2,6 +2,7 @@ require "nvchad.mappings"
 
 local map = vim.keymap.set
 
+map("n", ";", ":", { desc = "CMD enter command mode" })
 map("n", "<leader>fr", function() require("spectre").open() end, { desc = "Replace in files (Spectre)" })
 map("n", "<leader>n", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
 map("n", "<leader><space>", "<cmd> Telescope find_files <CR>", { desc = "Find files" })

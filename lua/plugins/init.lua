@@ -2,15 +2,19 @@ local overrides = require "overrides"
 
 local plugins = {
   {
-    "stevearc/conform.nvim",
-    event = 'BufWritePre', -- uncomment for format on save
-    config = function()
-      require "configs.conform"
-    end,
-  },
-
-  {
     "neovim/nvim-lspconfig",
+    dependencies = {
+      -- format & linting
+      {
+        "nvimtools/none-ls.nvim",
+        dependencies = {
+          "nvimtools/none-ls-extras.nvim",
+        },
+        config = function()
+          require "configs.none-ls"
+        end,
+      },
+    },
     config = function()
       require("nvchad.configs.lspconfig").defaults()
       require "configs.lspconfig"

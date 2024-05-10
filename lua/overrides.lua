@@ -3,7 +3,6 @@ local M = {}
 M.treesitter = {
   ensure_installed = {
     "bash",
-    "dart",
     "vim",
     "lua",
     "html",
@@ -29,24 +28,21 @@ M.treesitter = {
 
 M.mason = {
   ensure_installed = {
-    "bashls",
+    "bash-language-server",
 
     -- lua stuff
     "lua-language-server",
     "stylua",
 
     -- web dev stuff
-    "astro",
+    "astro-language-server",
     "css-lsp",
     "html-lsp",
-    -- "typescript-language-server",
-    "deno",
     "prettierd",
     "eslint_d",
 
     -- c/cpp stuff
     "clangd",
-    "clang-format",
   },
 }
 
@@ -81,10 +77,6 @@ M.presence = {
   reading_text = "Reading %s",
   workspace_text = "Working on %s",
   line_number_text = "Line %s out of %s",
-}
-
-M.flutters = {
-  -- https://github.com/akinsho/flutter-tools.nvim
 }
 
 M.copilot = {
