@@ -4,6 +4,7 @@ local plugins = {
   {
     "neovim/nvim-lspconfig",
     dependencies = {
+      "pmizio/typescript-tools.nvim",
       -- format & linting
       {
         "nvimtools/none-ls.nvim",
@@ -31,6 +32,7 @@ local plugins = {
     opts = overrides.treesitter,
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
+      "windwp/nvim-ts-autotag",
     },
   },
 
@@ -43,18 +45,6 @@ local plugins = {
     "folke/todo-comments.nvim",
     lazy = false,
     config = true,
-  },
-
-  {
-    "pmizio/typescript-tools.nvim",
-  },
-
-  {
-    "akinsho/flutter-tools.nvim",
-    lazy = false,
-    config = function()
-      require("flutter-tools").setup(overrides.flutter)
-    end,
   },
 
   {

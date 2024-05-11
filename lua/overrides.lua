@@ -15,6 +15,9 @@ M.treesitter = {
     "vue",
   },
   highlight = { enable = true },
+  autotag = {
+    enable = true,
+  },
   indent = {
     enable = true,
     -- disable = {
