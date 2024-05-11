@@ -13,3 +13,4 @@ Delete the `.git` folder from nvim folder
 ## Reference
 
 Forked from (NvChad/starter)[https://github.com/NvChad/starter]
+
