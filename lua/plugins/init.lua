@@ -73,6 +73,13 @@ local plugins = {
       require("spectre").setup(overrides.spectre)
     end,
   },
+  {
+    'numToStr/Comment.nvim',
+    opts = {
+      -- add any options here
+    },
+    lazy = false,
+  }
 }
 
 return plugins
