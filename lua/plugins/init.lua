@@ -37,6 +37,16 @@ local plugins = {
   },
 
   {
+    "numToStr/Comment.nvim",
+    config = function(_)
+      require("Comment").setup {
+        pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
+      }
+    end,
+    lazy=false,
+  },
+
+  {
     "NvChad/nvim-colorizer.lua",
     enabled = true,
   },
@@ -73,13 +83,7 @@ local plugins = {
       require("spectre").setup(overrides.spectre)
     end,
   },
-  {
-    'numToStr/Comment.nvim',
-    opts = {
-      -- add any options here
-    },
-    lazy = false,
-  }
+
 }
 
 return plugins
