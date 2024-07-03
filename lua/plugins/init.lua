@@ -43,7 +43,7 @@ local plugins = {
         pre_hook = require("ts_context_commentstring.integrations.comment_nvim").create_pre_hook(),
       }
     end,
-    lazy=false,
+    lazy = false,
   },
 
   {
@@ -84,6 +84,13 @@ local plugins = {
     end,
   },
 
+  -- overrides nvchad config
+  {
+    "kyazdani42/nvim-tree.lua",
+    opts = {
+      view = { adaptive_size = true },
+    },
+  },
 }
 
 return plugins

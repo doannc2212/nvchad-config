@@ -3,7 +3,6 @@ require "nvchad.mappings"
 local map = vim.keymap.set
 
 -- Files
-map("n", "<leader>n", "<cmd> NvimTreeToggle <CR>", { desc = "Toggle nvimtree" })
 map("n", "<leader><space>", "<cmd> Telescope find_files <CR>", { desc = "Find files" })
 
 -- Trouble
