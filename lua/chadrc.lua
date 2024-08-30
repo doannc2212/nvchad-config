@@ -40,7 +40,7 @@ M.ui = {
     load_on_startup = true,
 
     buttons = {
-      { "  Find File", "Spc f f", "Telescope find_files" },
+      { "  Find File", "Spc Spc", "Telescope find_files" },
       { "󰈚  Recent Files", "Spc f o", "Telescope oldfiles" },
       { "󰈭  Find Word", "Spc f w", "Telescope live_grep" },
       { "  Bookmarks", "Spc m a", "Telescope marks" },
@@ -50,7 +50,7 @@ M.ui = {
   },
 
   cheatsheet = {
-    theme = "grid",                                            -- simple/grid
+    theme = "grid", -- simple/grid
     excluded_groups = { "terminal (t)", "autopairs", "Nvim" }, -- can add group name or with mode
   },
 
