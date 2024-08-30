@@ -13,6 +13,8 @@ M.treesitter = {
     "markdown",
     "markdown_inline",
     "vue",
+    "go",
+    "svelte",
   },
   highlight = { enable = true },
   autotag = {
@@ -33,12 +35,16 @@ M.mason = {
   ensure_installed = {
     "bash-language-server",
 
+    -- golang stuff
+    "gopls",
+
     -- lua stuff
     "lua-language-server",
     "stylua",
 
     -- web dev stuff
     "astro-language-server",
+    "svelte-language-server",
     "css-lsp",
     "html-lsp",
     "prettierd",

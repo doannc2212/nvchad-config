@@ -17,8 +17,6 @@ map(
 map("n", "gd", function()
   require("telescope.builtin").lsp_definitions { reuse_win = true }
 end, { desc = "Goto Definition" })
-map("n", "<M-o>", "<cmd> TSToolsOrganizeImports<CR>", { desc = "Sorts and removes unused imports" })
-map("n", "<leader>.", "<cmd> TSToolsFixAll<CR>", { desc = "Fixes all fixable errors" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Show hover" })
 
 -- replacement

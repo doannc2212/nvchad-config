@@ -6,8 +6,8 @@ M.ui = {
   hl_add = {},
   hl_override = {},
   changed_themes = {},
-  theme_toggle = { "catppuccin", "one_light" },
-  theme = "catppuccin", -- default theme
+  theme_toggle = { "chadracula-evondev", "one_light" },
+  theme = "chadracula-evondev", -- default theme
   transparency = true,
 
   cmp = {
