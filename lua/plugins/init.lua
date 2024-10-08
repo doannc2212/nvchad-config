@@ -22,10 +22,7 @@ local plugins = {
     end,
   },
 
-  {
-    "williamboman/mason.nvim",
-    opts = overrides.mason,
-  },
+  { "williamboman/mason.nvim", },
 
   {
     "nvim-treesitter/nvim-treesitter",

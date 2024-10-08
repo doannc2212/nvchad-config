@@ -31,30 +31,6 @@ M.treesitter = {
   -- },
 }
 
-M.mason = {
-  ensure_installed = {
-    "bash-language-server",
-
-    -- golang stuff
-    "gopls",
-
-    -- lua stuff
-    "lua-language-server",
-    "stylua",
-
-    -- web dev stuff
-    "astro-language-server",
-    "svelte-language-server",
-    "css-lsp",
-    "html-lsp",
-    "prettierd",
-    "eslint_d",
-
-    -- c/cpp stuff
-    "clangd",
-  },
-}
-
 -- git support in nvimtree
 M.nvimtree = {
   git = { enable = true },

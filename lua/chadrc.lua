@@ -1,15 +1,16 @@
 local M = {}
 
-M.ui = {
-  ------------------------------- base46 -------------------------------------
-  -- hl = highlights
+M.base46 = {
   hl_add = {},
   hl_override = {},
+  integrations = {},
   changed_themes = {},
+  transparency = true,
   theme_toggle = { "chadracula-evondev", "one_light" },
   theme = "chadracula-evondev", -- default theme
-  transparency = true,
+}
 
+M.ui = {
   cmp = {
     icons = true,
     lspkind_text = true,
@@ -18,7 +19,6 @@ M.ui = {
 
   telescope = { style = "borderless" }, -- borderless / bordered
 
-  ------------------------------- nvchad_ui modules -----------------------------
   statusline = {
     theme = "default", -- default/vscode/vscode_colored/minimal
     -- default/round/block/arrow separators work only for default statusline theme
@@ -50,7 +50,7 @@ M.ui = {
   },
 
   cheatsheet = {
-    theme = "grid", -- simple/grid
+    theme = "grid",                                            -- simple/grid
     excluded_groups = { "terminal (t)", "autopairs", "Nvim" }, -- can add group name or with mode
   },
 
@@ -66,6 +66,32 @@ M.ui = {
       width = 0.5,
       height = 0.4,
       border = "single",
+    },
+  },
+
+  mason = {
+    cmd = true,
+    pkgs = {
+
+      "bash-language-server",
+
+      -- golang stuff
+      "gopls",
+
+      -- lua stuff
+      "lua-language-server",
+      "stylua",
+
+      -- web dev stuff
+      "astro-language-server",
+      "svelte-language-server",
+      "css-lsp",
+      "html-lsp",
+      "prettierd",
+      "eslint_d",
+
+      -- c/cpp stuff
+      "clangd",
     },
   },
 }

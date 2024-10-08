@@ -1,8 +1,6 @@
 local funcs = require "funcs"
 local map = vim.keymap.set
 
-map("i", "<C-b>", "<ESC>^i", { desc = "move beginning of line" })
-map("i", "<C-e>", "<End>", { desc = "move end of line" })
 map("i", "<C-h>", "<Left>", { desc = "move left" })
 map("i", "<C-l>", "<Right>", { desc = "move right" })
 map("i", "<C-j>", "<Down>", { desc = "move down" })
@@ -18,8 +16,6 @@ map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General Clear highlights" })
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "General Save file" })
 map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "General Copy whole file" })
 
-map("n", "<leader>n", "<cmd>set nu!<CR>", { desc = "Toggle line number" })
-map("n", "<leader>rn", "<cmd>set rnu!<CR>", { desc = "Toggle relative number" })
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "Toggle nvcheatsheet" })
 
 -- map("n", "<leader>fm", function()
@@ -145,3 +141,7 @@ map("n", "<leader>fr", function()
 end, { desc = "Replace in files (Spectre)" })
 map("n", "<leader>m", ":%s///g<Left><Left>", { desc = "Replace text on cursor" })
 map("n", "<leader>mc", ":%s///gc<Left><Left><Left>", { desc = "Replace text on cursor with choice" })
+
+map("n", "<leader>mi", function()
+  require("nvchad.mason").install_all()
+end, { desc = "Mason Install All" })
