@@ -114,4 +114,8 @@ M.spectre = {
   open_cmd = "noswapfile vnew",
 }
 
+M.leetcode = {
+  --
+}
+
 return M
