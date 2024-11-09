@@ -145,3 +145,5 @@ map("n", "<leader>mc", ":%s///gc<Left><Left><Left>", { desc = "Replace text on c
 map("n", "<leader>mi", function()
   require("nvchad.mason").install_all()
 end, { desc = "Mason Install All" })
+
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })

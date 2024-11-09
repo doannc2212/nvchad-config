@@ -87,6 +87,7 @@ M.ui = {
       "svelte-language-server",
       "css-lsp",
       "html-lsp",
+      "json-language-server",
       "prettierd",
       "eslint_d",
 
