@@ -2,6 +2,7 @@ local M = {}
 
 M.treesitter = {
   ensure_installed = {
+    "astro",
     "bash",
     "vim",
     "lua",
@@ -18,7 +19,8 @@ M.treesitter = {
   },
   highlight = { enable = true },
   autotag = {
-    enable = true,
+    -- https://github.com/windwp/nvim-ts-autotag/issues/191#issuecomment-2161689614
+    enable = false,
   },
   indent = {
     enable = true,

@@ -22,17 +22,24 @@ local plugins = {
     end,
   },
 
-  { "williamboman/mason.nvim", },
+  { "williamboman/mason.nvim" },
 
   {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
     dependencies = {
       "JoosepAlviste/nvim-ts-context-commentstring",
-      "windwp/nvim-ts-autotag",
     },
   },
-
+  {
+    "windwp/nvim-ts-autotag",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+    lazy = true,
+    event = "VeryLazy",
+  },
   {
     "numToStr/Comment.nvim",
     config = function(_)
@@ -91,7 +98,7 @@ local plugins = {
       -- "rcarriga/nvim-notify",
       "nvim-tree/nvim-web-devicons",
     },
-    opts = overrides.leetcode
+    opts = overrides.leetcode,
   },
   {
     "zbirenbaum/copilot.lua",
