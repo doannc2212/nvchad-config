@@ -23,6 +23,14 @@ require("typescript-tools").setup {
     map("n", "<leader>.", "<cmd> TSToolsFixAll<CR>", { desc = "Fixes all fixable errors" })
     return on_attach
   end,
+  settings = {
+    tsserver_plugins = {
+      -- for TypeScript v4.9+
+      "@styled/typescript-styled-plugin",
+      -- or for older TypeScript versions
+      -- "typescript-styled-plugin",
+    },
+  },
   on_init = on_init,
   capabilities = capabilities,
 }
