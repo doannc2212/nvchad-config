@@ -40,6 +40,11 @@ map("n", "<leader>x", function()
   require("nvchad.tabufline").close_buffer()
 end, { desc = "buffer close" })
 
+map("n", "<leader>xa", function()
+  require("nvchad.tabufline").closeBufs_at_direction "left"
+  require("nvchad.tabufline").closeBufs_at_direction "right"
+end, { desc = "buffer close all" })
+
 -- Comment
 map("n", "<leader>/", "gcc", { desc = "Toggle Comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "Toggle comment", remap = true })
@@ -134,6 +139,8 @@ map("n", "<M-o>", funcs.organize_imports, { desc = "Sorts and removes unused imp
 map("n", "<leader>fm", function()
   vim.lsp.buf_request(0, "textDocument/formatting", vim.lsp.util.make_formatting_params {})
 end, { desc = "Show hover" })
+-- trigger textDocument/codeAction without Telescope
+map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 
 -- replacement
 map("n", "<leader>fr", function()
@@ -146,4 +153,6 @@ map("n", "<leader>mi", function()
   require("nvchad.mason").install_all()
 end, { desc = "Mason Install All" })
 
-map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code action" })
+map("n", "<leader>ra", function()
+  vim.lsp.buf.rename()
+end, { desc = "Typescript rename" })
