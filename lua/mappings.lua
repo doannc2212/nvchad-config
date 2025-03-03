@@ -136,9 +136,11 @@ map("n", "gd", function()
 end, { desc = "Goto Definition" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Show hover" })
 map("n", "<M-o>", funcs.organize_imports, { desc = "Sorts and removes unused imports" })
-map("n", "<leader>fm", function()
-  vim.lsp.buf_request(0, "textDocument/formatting", vim.lsp.util.make_formatting_params {})
-end, { desc = "Show hover" })
+-- map("n", "<leader>fm", function()
+--   vim.lsp.buf_request(0, "textDocument/formatting", vim.lsp.util.make_formatting_params {})
+-- end, { desc = "Show hover" })
+
+map("n", "<leader>fm", funcs.async_formatting, { desc = "Show hover" })
 -- trigger textDocument/codeAction without Telescope
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 
@@ -156,6 +158,9 @@ end, { desc = "Mason Install All" })
 map("n", "<leader>ra", function()
   vim.lsp.buf.rename()
 end, { desc = "Typescript rename" })
+
+map("n", "<leader>.", "<cmd>TSToolsFixAll<cr>", { desc = "Typescript fixes all fixable errors" })
+map("n", "<leader>io", "<cmd>TSToolsAddMissingImports<cr>", { desc = "Typescript add missing imports" })
 
 local abbrev = vim.cmd.abbrev
 
