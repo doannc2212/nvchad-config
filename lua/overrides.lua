@@ -130,6 +130,12 @@ M.avante = {
     auto_apply_diff_after_generation = false,
     support_paste_from_clipboard = false,
   },
+  selector = {
+    exclude_auto_select = { "NvimTree" },
+  },
+  file_selector = {
+    provider = "telescope",
+  },
 }
 
 M.nvimtree = {
