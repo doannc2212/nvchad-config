@@ -161,6 +161,7 @@ end, { desc = "Typescript rename" })
 
 map("n", "<leader>.", "<cmd>TSToolsFixAll<cr>", { desc = "Typescript fixes all fixable errors" })
 map("n", "<leader>io", "<cmd>TSToolsAddMissingImports<cr>", { desc = "Typescript add missing imports" })
+map("n", "<leader>cn", "<cmd>NullLsInfo<cr>", { desc = "NullLs Info" })
 
 local abbrev = vim.cmd.abbrev
 
@@ -168,3 +169,4 @@ abbrev("funciton", "function")
 abbrev("cosnt", "const")
 abbrev("Wqa", "wqa")
 abbrev("WQa", "wqa")
+abbrev("wQa", "wqa")

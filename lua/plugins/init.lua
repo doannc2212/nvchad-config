@@ -10,6 +10,7 @@ local plugins = {
         "nvimtools/none-ls.nvim",
         dependencies = {
           "nvimtools/none-ls-extras.nvim",
+          "davidmh/cspell.nvim",
         },
         config = function()
           require "configs.none-ls"
@@ -79,41 +80,47 @@ local plugins = {
   -- overrides nvchad config
   {
     "kyazdani42/nvim-tree.lua",
-    opts = {
-      view = { adaptive_size = true },
-    },
+    opts = overrides.nvimtree,
   },
   {
-
     "kawre/leetcode.nvim",
     build = ":TSUpdate html",
-    lazy = false,
+    lazy = "leetcode" ~= vim.fn.argv(0, -1),
     dependencies = {
       "nvim-telescope/telescope.nvim",
       "nvim-lua/plenary.nvim", -- required by telescope
       "MunifTanjim/nui.nvim",
 
-      -- optional
       "nvim-treesitter/nvim-treesitter",
-      -- "rcarriga/nvim-notify",
       "nvim-tree/nvim-web-devicons",
     },
+    cmd = "Leet",
     opts = overrides.leetcode,
   },
   {
     "zbirenbaum/copilot.lua",
-    -- Lazy load when event occurs. Events are triggered
-    -- as mentioned in:
-    -- https://vi.stackexchange.com/a/4495/20389
     event = "InsertEnter",
-    -- You can also have it load at immediately at
-    -- startup by commenting above and uncommenting below:
     lazy = false,
     opts = overrides.copilot,
   },
 
-  -- attach on stable
-  -- https://github.com/yetone/avante.nvim
+  {
+    "yetone/avante.nvim",
+    lazy = false,
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    version = false, -- Never set this value to "*"! Never!
+    opts = overrides.avante,
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "MunifTanjim/nui.nvim",
+      --- The below dependencies are optional,
+      "echasnovski/mini.pick", -- for file_selector provider mini.pick
+      "nvim-telescope/telescope.nvim", -- for file_selector provider telescope
+      "hrsh7th/nvim-cmp", -- autocompletion for avante commands and mentions
+      "nvim-tree/nvim-web-devicons", -- or echasnovski/mini.icons
+      "zbirenbaum/copilot.lua", -- for providers='copilot'
+    },
+  },
 }
 
 return plugins

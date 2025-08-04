@@ -24,16 +24,9 @@ M.treesitter = {
   },
   indent = {
     enable = true,
-    -- disable = {
-    --   "python"
-    -- },
   },
-  -- context_commentstring = {
-  --   enable = true,
-  -- },
 }
 
--- git support in nvimtree
 M.nvimtree = {
   git = { enable = true },
 
@@ -48,7 +41,6 @@ M.nvimtree = {
   },
 }
 
--- Discord presence
 M.presence = {
   auto_update = true,
   log_level = nil,
@@ -56,7 +48,6 @@ M.presence = {
   enable_line_number = true,
   buttons = true,
   show_time = true,
-  -- Rich Presence text options
   editing_text = "Editing %s",
   file_explorer_text = "Browsing %s",
   git_commit_text = "Committing changes",
@@ -109,7 +100,6 @@ M.copilot = {
     ["."] = false,
   },
   copilot_node_command = "node", -- Node.js version must be > 16.x
-  -- server_opts_overrides = {},
 }
 
 M.spectre = {
@@ -117,7 +107,33 @@ M.spectre = {
 }
 
 M.leetcode = {
-  --
+  arg = "leetcode",
+  lang = "cpp",
+  storage = {
+    home = vim.fn.stdpath "data" .. "/leetcode",
+    cache = vim.fn.stdpath "cache" .. "/leetcode",
+  },
+}
+
+M.avante = {
+  provider = "copilot",
+  auto_suggestions_provider = "copilot",
+  providers = {
+    copilot = {
+      model = "claude-sonnet-4",
+    },
+  },
+  behaviour = {
+    auto_suggestions = false, -- Experimental stage
+    auto_set_highlight_group = true,
+    auto_set_keymaps = true,
+    auto_apply_diff_after_generation = false,
+    support_paste_from_clipboard = false,
+  },
+}
+
+M.nvimtree = {
+  view = { adaptive_size = true },
 }
 
 return M

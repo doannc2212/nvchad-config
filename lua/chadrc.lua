@@ -50,7 +50,7 @@ M.ui = {
   },
 
   cheatsheet = {
-    theme = "grid",                                            -- simple/grid
+    theme = "grid", -- simple/grid
     excluded_groups = { "terminal (t)", "autopairs", "Nvim" }, -- can add group name or with mode
   },
 
@@ -93,6 +93,9 @@ M.ui = {
 
       -- c/cpp stuff
       "clangd",
+
+      -- spell check
+      "cspell",
     },
   },
 }
