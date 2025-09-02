@@ -30,11 +30,11 @@ return {
       "html-lsp",
       "tailwindcss-language-server",
       "typescript-language-server",
+      "vtsls",
 
       "json-language-server",
       "yaml-language-server",
 
-      "biome",
       "prettierd",
       "eslint_d",
       "stylua",
