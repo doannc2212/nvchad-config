@@ -1,19 +1,10 @@
+-- https://github.com/NvChad/NvChad/blob/v2.5/lua/nvchad/options.lua
 require "nvchad.options"
-local funcs = require "funcs"
 
-local o = vim.opt
-local autocmd = vim.api.nvim_create_autocmd
-
-autocmd("VimResized", {
+vim.api.nvim_create_autocmd("VimResized", {
   pattern = "*",
   command = "tabdo wincmd =",
 })
 
-o.relativenumber = true
-o.updatetime = 100
-
--- golang org import on save
-autocmd("BufWritePre", {
-  pattern = "*.go",
-  callback = funcs.organize_imports,
-})
+vim.o.relativenumber = true
+vim.o.updatetime = 100

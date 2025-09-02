@@ -1,5 +1,4 @@
 local none_ls = require "null-ls"
-local funcs = require "funcs"
 
 local eslint_config = {
   extra_filetypes = { "astro" },
@@ -14,8 +13,6 @@ local eslint_config = {
     }
   end,
 }
-
-local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
 local b = none_ls.builtins
 local cspell = require "cspell"
@@ -44,16 +41,4 @@ local sources = {
 none_ls.setup {
   debug = true,
   sources = sources,
-  on_attach = function(client, bufnr)
-    if client.supports_method "textDocument/formatting" then
-      vim.api.nvim_clear_autocmds { group = augroup, buffer = bufnr }
-      vim.api.nvim_create_autocmd("BufWritePre", {
-        group = augroup,
-        buffer = bufnr,
-        callback = function()
-          funcs.async_formatting(bufnr)
-        end,
-      })
-    end
-  end,
 }

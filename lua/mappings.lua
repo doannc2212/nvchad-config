@@ -1,4 +1,3 @@
-local funcs = require "funcs"
 local map = vim.keymap.set
 
 map("i", "<C-h>", "<Left>", { desc = "move left" })
@@ -14,19 +13,15 @@ map("n", "<C-k>", "<C-w>k", { desc = "switch window up" })
 map("n", "<Esc>", "<cmd>noh<CR>", { desc = "General Clear highlights" })
 
 map("n", "<C-s>", "<cmd>w<CR>", { desc = "General Save file" })
-map("n", "<C-c>", "<cmd>%y+<CR>", { desc = "General Copy whole file" })
 
 map("n", "<leader>ch", "<cmd>NvCheatsheet<CR>", { desc = "Toggle nvcheatsheet" })
 
--- map("n", "<leader>fm", function()
---   require("conform").format { lsp_fallback = true }
--- end, { desc = "General Format file" })
-
--- global lsp mappings
-map("n", "<leader>ds", vim.diagnostic.setloclist, { desc = "LSP Diagnostic loclist" })
+map("n", "<leader>fm", function()
+  require("conform").format { async = true }
+end, { desc = "General Format file" })
 
 -- tabufline
-map("n", "<leader>b", "<cmd>enew<CR>", { desc = "buffer new" })
+map("n", "<leader>bn", "<cmd>enew<CR>", { desc = "buffer new" })
 
 map("n", "<tab>", function()
   require("nvchad.tabufline").next()
@@ -50,7 +45,7 @@ map("n", "<leader>/", "gcc", { desc = "Toggle Comment", remap = true })
 map("v", "<leader>/", "gc", { desc = "Toggle comment", remap = true })
 
 -- nvimtree
-map("n", "<C-n>", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
+map("n", "<leader>n", "<cmd>NvimTreeToggle<CR>", { desc = "nvimtree toggle window" })
 map("n", "<leader>e", "<cmd>NvimTreeFocus<CR>", { desc = "nvimtree focus window" })
 
 -- telescope
@@ -73,17 +68,6 @@ map(
 
 -- terminal
 map("t", "<C-x>", "<C-\\><C-N>", { desc = "terminal escape terminal mode" })
-
--- new terminals
-map("n", "<leader>h", function()
-  require("nvchad.term").new { pos = "sp" }
-end, { desc = "terminal new horizontal term" })
-
-map("n", "<leader>v", function()
-  require("nvchad.term").new { pos = "vsp" }
-end, { desc = "terminal new vertical window" })
-
--- toggleable
 map({ "n", "t" }, "<A-v>", function()
   require("nvchad.term").toggle { pos = "vsp", id = "vtoggleTerm" }
 end, { desc = "terminal toggleable vertical term" })
@@ -95,29 +79,6 @@ end, { desc = "terminal new horizontal term" })
 map({ "n", "t" }, "<A-i>", function()
   require("nvchad.term").toggle { pos = "float", id = "floatTerm" }
 end, { desc = "terminal toggle floating term" })
-
--- whichkey
-map("n", "<leader>wK", "<cmd>WhichKey <CR>", { desc = "whichkey all keymaps" })
-
-map("n", "<leader>wk", function()
-  vim.cmd("WhichKey " .. vim.fn.input "WhichKey: ")
-end, { desc = "whichkey query lookup" })
-
--- blankline
-map("n", "<leader>cc", function()
-  local config = { scope = {} }
-  config.scope.exclude = { language = {}, node_type = {} }
-  config.scope.include = { node_type = {} }
-  local node = require("ibl.scope").get(vim.api.nvim_get_current_buf(), config)
-
-  if node then
-    local start_row, _, end_row, _ = node:range()
-    if start_row ~= end_row then
-      vim.api.nvim_win_set_cursor(vim.api.nvim_get_current_win(), { start_row + 1, 0 })
-      vim.api.nvim_feedkeys("_", "n", true)
-    end
-  end
-end, { desc = "blankline jump to current context" })
 
 -- Files
 map("n", "<leader><space>", "<cmd> Telescope find_files <CR>", { desc = "Find files" })
@@ -135,19 +96,13 @@ map("n", "gd", function()
   require("telescope.builtin").lsp_definitions { reuse_win = true }
 end, { desc = "Goto Definition" })
 map("n", "K", vim.lsp.buf.hover, { desc = "Show hover" })
-map("n", "<M-o>", funcs.organize_imports, { desc = "Sorts and removes unused imports" })
--- map("n", "<leader>fm", function()
---   vim.lsp.buf_request(0, "textDocument/formatting", vim.lsp.util.make_formatting_params {})
--- end, { desc = "Show hover" })
-
-map("n", "<leader>fm", funcs.async_formatting, { desc = "Show hover" })
--- trigger textDocument/codeAction without Telescope
 map("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 
 -- replacement
 map("n", "<leader>fr", function()
   require("spectre").open()
-end, { desc = "Replace in files (Spectre)" })
+end, { desc = "Find and replace (Spectre)" })
+
 map("n", "<leader>m", ":%s///g<Left><Left>", { desc = "Replace text on cursor" })
 map("n", "<leader>mc", ":%s///gc<Left><Left><Left>", { desc = "Replace text on cursor with choice" })
 
@@ -155,18 +110,4 @@ map("n", "<leader>mi", function()
   require("nvchad.mason").install_all()
 end, { desc = "Mason Install All" })
 
-map("n", "<leader>ra", function()
-  vim.lsp.buf.rename()
-end, { desc = "Typescript rename" })
-
-map("n", "<leader>.", "<cmd>TSToolsFixAll<cr>", { desc = "Typescript fixes all fixable errors" })
-map("n", "<leader>io", "<cmd>TSToolsAddMissingImports<cr>", { desc = "Typescript add missing imports" })
 map("n", "<leader>cn", "<cmd>NullLsInfo<cr>", { desc = "NullLs Info" })
-
-local abbrev = vim.cmd.abbrev
-
-abbrev("funciton", "function")
-abbrev("cosnt", "const")
-abbrev("Wqa", "wqa")
-abbrev("WQa", "wqa")
-abbrev("wQa", "wqa")
