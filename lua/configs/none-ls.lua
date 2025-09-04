@@ -15,7 +15,6 @@ local eslint_config = {
 }
 
 local b = none_ls.builtins
-local cspell = require "cspell"
 
 local sources = {
 
@@ -26,16 +25,8 @@ local sources = {
   -- Lua
   b.formatting.stylua,
 
-  b.completion.spell,
   require("none-ls.diagnostics.eslint_d").with(eslint_config),
   require("none-ls.code_actions.eslint_d").with(eslint_config),
-  -- cspell
-  cspell.diagnostics.with {
-    diagnostics_postprocess = function(diagnostic)
-      diagnostic.severity = vim.diagnostic.severity["HINT"]
-    end,
-  },
-  cspell.code_actions,
 }
 
 none_ls.setup {

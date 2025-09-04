@@ -7,7 +7,6 @@ return {
       "nvimtools/none-ls.nvim",
       dependencies = {
         "nvimtools/none-ls-extras.nvim",
-        "davidmh/cspell.nvim",
       },
       config = function()
         require "configs.none-ls"

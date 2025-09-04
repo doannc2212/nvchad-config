@@ -5,6 +5,7 @@ M.base46 = {
   theme = "chadracula", -- default theme
   transparency = true,
 }
+
 M.ui = {
   telescope = { style = "bordered" }, -- borderless / bordered
 }
