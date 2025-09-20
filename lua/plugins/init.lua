@@ -12,4 +12,13 @@ return {
   require "plugins.copilot",
   require "plugins.leetcode",
   require "plugins.conform",
+  require "plugins.dadbod",
+  {
+    "NvChad/nvim-colorizer.lua",
+    opts = {
+      user_default_options = {
+        tailwind = true,
+      },
+    },
+  },
 }
