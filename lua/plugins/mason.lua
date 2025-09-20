@@ -39,8 +39,6 @@ return {
       "eslint_d",
       "stylua",
 
-      "cspell",
-
       "sonarlint-language-server",
     },
   },
