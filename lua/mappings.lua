@@ -103,3 +103,6 @@ map("n", "<leader>mi", function()
 end, { desc = "Mason Install All" })
 
 map("n", "<leader>cn", "<cmd>NullLsInfo<cr>", { desc = "NullLs Info" })
+
+map("n", "<A-j>", ":m .+1<CR>==") -- move line up(n)
+map("n", "<A-k>", ":m .-2<CR>==") -- move line down(n)
