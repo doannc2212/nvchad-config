@@ -3,6 +3,7 @@ local on_init = require("nvchad.configs.lspconfig").on_init
 local capabilities = require("nvchad.configs.lspconfig").capabilities
 
 local servers = {
+  "biome",
   "html",
   "cssls",
   "gopls",
