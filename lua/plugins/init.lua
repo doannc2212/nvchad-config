@@ -11,7 +11,7 @@ return {
   require "plugins.nvimtree",
   require "plugins.copilot",
   require "plugins.leetcode",
-  require "plugins.conform",
+  require "plugins.formatter",
   require "plugins.dadbod",
   {
     "NvChad/nvim-colorizer.lua",
