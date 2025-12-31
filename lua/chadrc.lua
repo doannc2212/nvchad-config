@@ -1,8 +1,8 @@
 local M = {}
 
 M.base46 = {
-  theme_toggle = { "chadracula-evondev", "one_light" },
-  theme = "chadracula-evondev", -- default theme
+  theme_toggle = { "chadracula", "one_light" },
+  theme = "chadracula", -- default theme
   transparency = true,
 }
 

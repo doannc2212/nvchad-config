@@ -14,7 +14,7 @@ return {
       go = { "gofmt", "gofumt" },
       rust = { "rustfmt" },
       json = { "prettierd" },
-      sql = { "sqlfmt" },
+      sql = { "sql_formatter", "sqlfmt" },
       html = { "biome-check", "prettierd" },
       css = { "biome-check", "prettierd" },
       -- markdown = { "prettierd" },

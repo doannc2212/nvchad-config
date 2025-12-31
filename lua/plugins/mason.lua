@@ -37,7 +37,7 @@ return {
       "yaml-language-server",
 
       "prettierd",
-      "eslint_d",
+      "eslint",
       "stylua",
 
       "sonarlint-language-server",
