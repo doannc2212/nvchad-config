@@ -13,6 +13,7 @@ return {
   require "plugins.leetcode",
   require "plugins.formatter",
   require "plugins.dadbod",
+  require "plugins.dap",
   {
     "NvChad/nvim-colorizer.lua",
     opts = {

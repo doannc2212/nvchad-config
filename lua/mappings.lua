@@ -106,3 +106,96 @@ map("n", "<leader>cn", "<cmd>NullLsInfo<cr>", { desc = "NullLs Info" })
 
 map("n", "<A-j>", ":m .+1<CR>==") -- move line up(n)
 map("n", "<A-k>", ":m .-2<CR>==") -- move line down(n)
+
+-- DAP (Debugger)
+map("n", "<leader>db", function()
+  require("dap").toggle_breakpoint()
+end, { desc = "DAP Toggle Breakpoint" })
+
+map("n", "<leader>dB", function()
+  require("dap").set_breakpoint(vim.fn.input "Breakpoint condition: ")
+end, { desc = "DAP Conditional Breakpoint" })
+
+map("n", "<leader>dc", function()
+  require("dap").continue()
+end, { desc = "DAP Continue" })
+
+map("n", "<leader>dC", function()
+  require("dap").run_to_cursor()
+end, { desc = "DAP Run to Cursor" })
+
+map("n", "<leader>dg", function()
+  require("dap").goto_()
+end, { desc = "DAP Go to Line (No Execute)" })
+
+map("n", "<leader>di", function()
+  require("dap").step_into()
+end, { desc = "DAP Step Into" })
+
+map("n", "<leader>dj", function()
+  require("dap").down()
+end, { desc = "DAP Down" })
+
+map("n", "<leader>dk", function()
+  require("dap").up()
+end, { desc = "DAP Up" })
+
+map("n", "<leader>dl", function()
+  require("dap").run_last()
+end, { desc = "DAP Run Last" })
+
+map("n", "<leader>do", function()
+  require("dap").step_out()
+end, { desc = "DAP Step Out" })
+
+map("n", "<leader>dO", function()
+  require("dap").step_over()
+end, { desc = "DAP Step Over" })
+
+map("n", "<leader>dp", function()
+  require("dap").pause()
+end, { desc = "DAP Pause" })
+
+map("n", "<leader>dr", function()
+  require("dap").repl.toggle()
+end, { desc = "DAP Toggle REPL" })
+
+map("n", "<leader>ds", function()
+  require("dap").session()
+end, { desc = "DAP Session" })
+
+map("n", "<leader>dt", function()
+  require("dap").terminate()
+end, { desc = "DAP Terminate" })
+
+map("n", "<leader>dw", function()
+  require("dap.ui.widgets").hover()
+end, { desc = "DAP Widgets" })
+
+map("n", "<leader>du", function()
+  require("dapui").toggle()
+end, { desc = "DAP Toggle UI" })
+
+map("n", "<leader>de", function()
+  require("dapui").eval()
+end, { desc = "DAP Eval" })
+
+map("v", "<leader>de", function()
+  require("dapui").eval()
+end, { desc = "DAP Eval Selection" })
+
+map("n", "<F5>", function()
+  require("dap").continue()
+end, { desc = "DAP Continue" })
+
+map("n", "<F10>", function()
+  require("dap").step_over()
+end, { desc = "DAP Step Over" })
+
+map("n", "<F11>", function()
+  require("dap").step_into()
+end, { desc = "DAP Step Into" })
+
+map("n", "<F12>", function()
+  require("dap").step_out()
+end, { desc = "DAP Step Out" })
