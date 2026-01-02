@@ -16,31 +16,5 @@ return {
     },
 
     max_concurrent_installers = 10,
-
-    ensure_installed = {
-      "biome",
-      "bash-language-server",
-      "gopls",
-      "clangd",
-      "rust-analyzer",
-      "lua-language-server",
-
-      "astro-language-server",
-      "svelte-language-server",
-      "css-lsp",
-      "html-lsp",
-      "tailwindcss-language-server",
-      "typescript-language-server",
-      "vtsls",
-
-      "json-language-server",
-      "yaml-language-server",
-
-      "prettierd",
-      "eslint",
-      "stylua",
-
-      "sonarlint-language-server",
-    },
   },
 }
