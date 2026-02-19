@@ -1,8 +1,8 @@
 local M = {}
 
 M.base46 = {
-  theme_toggle = { "chadracula", "one_light" },
-  theme = "chadracula", -- default theme
+  theme_toggle = { "chadracula-evondev", "one_light" },
+  theme = "chadracula-evondev", -- default theme
   transparency = true,
 }
 
@@ -15,7 +15,7 @@ M.mason = {
     -- Formatters/Linters
     "biome",
     "prettierd",
-    "eslint",
+    "eslint_d",
     "stylua",
     "sonarlint-language-server",
 
