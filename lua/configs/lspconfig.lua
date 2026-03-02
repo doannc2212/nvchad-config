@@ -14,6 +14,7 @@ local servers = {
   "lua_ls",
   "rust-analyzer",
   "tsserver",
+  "qmlls",
 }
 
 vim.lsp.enable(servers)
@@ -28,6 +29,21 @@ for _, lsp in ipairs(servers) do
 end
 
 vim.lsp.enable(servers)
+
+-- qmlls
+vim.lsp.config("qmlls", {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  cmd = {
+    "qmlls6",
+    "-I", "/usr/lib/qt6/qml",
+    "-b", "/usr/lib/qt6/qml",
+    "--no-cmake-calls",
+  },
+  filetypes = { "qml", "qmljs" },
+  root_markers = { "shell.qml", ".git" },
+})
 
 -- typescript
 vim.lsp.config("vtsls", {

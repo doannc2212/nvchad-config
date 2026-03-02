@@ -16,6 +16,7 @@ return {
       "vue",
       "go",
       "svelte",
+      "qmljs",
     },
     highlight = { enable = true },
     autotag = {

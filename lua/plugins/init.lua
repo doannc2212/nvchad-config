@@ -14,6 +14,7 @@ return {
   require "plugins.formatter",
   require "plugins.dadbod",
   require "plugins.dap",
+  require "plugins.quickshell",
   {
     "NvChad/nvim-colorizer.lua",
     opts = {
