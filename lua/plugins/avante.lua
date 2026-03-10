@@ -9,7 +9,7 @@ return {
     providers = {
       copilot = {
         -- model = "gpt-4.1",
-        model = "claude-opus-4.5",
+        model = "claude-opus-4.6",
       },
     },
     behaviour = {

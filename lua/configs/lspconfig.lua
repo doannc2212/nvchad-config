@@ -37,8 +37,10 @@ vim.lsp.config("qmlls", {
   capabilities = capabilities,
   cmd = {
     "qmlls6",
-    "-I", "/usr/lib/qt6/qml",
-    "-b", "/usr/lib/qt6/qml",
+    "-I",
+    "/usr/lib/qt6/qml",
+    "-b",
+    "/usr/lib/qt6/qml",
     "--no-cmake-calls",
   },
   filetypes = { "qml", "qmljs" },
