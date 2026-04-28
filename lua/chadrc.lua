@@ -17,6 +17,8 @@ M.mason = {
     "prettierd",
     "eslint_d",
     "stylua",
+    "oxlint",
+    "oxfmt",
 
     -- Language Servers
     "bash-language-server",

@@ -1,4 +1,6 @@
-local js_formatters = { "biome-check", "prettierd" }
+-- Priority: prettierd > biome-check
+-- stop_after_first = true means the first formatter whose condition passes wins.
+local js_formatters = { "prettierd", "biome-check" }
 
 return {
   "stevearc/conform.nvim",
@@ -15,18 +17,45 @@ return {
       javascriptreact = js_formatters,
       go = { "gofmt", "gofumt" },
       rust = { "rustfmt" },
-      json = { "biome-check", "prettierd" },
+      json = { "prettierd", "biome-check" },
       sql = { "sql_formatter" },
-      html = { "biome-check", "prettierd" },
-      css = { "biome-check", "prettierd" },
+      html = { "prettierd", "biome-check" },
+      css = { "prettierd", "biome-check" },
       -- markdown = { "prettierd" },
       markdown = {},
-      graphql = { "prettierd" },
+      graphql = { "prettierd", "biome-check" },
+      svelte = { "prettierd", "biome-check" },
+      vue = { "prettierd", "biome-check" },
     },
     formatters = {
+      prettierd = {
+        condition = function(self, ctx)
+          return vim.fs.find({
+            ".prettierrc",
+            ".prettierrc.js",
+            ".prettierrc.cjs",
+            ".prettierrc.mjs",
+            ".prettierrc.json",
+            ".prettierrc.json5",
+            ".prettierrc.yaml",
+            ".prettierrc.yml",
+            ".prettierrc.toml",
+            "prettier.config.js",
+            "prettier.config.cjs",
+            "prettier.config.mjs",
+          }, { path = ctx.filename, upward = true })[1] ~= nil
+        end,
+      },
       ["biome-check"] = {
         require_cwd = true,
         condition = function(self, ctx)
+          -- Only run biome when no prettier config is present (prettier has higher priority)
+          local has_prettier = vim.fs.find({
+            ".prettierrc", ".prettierrc.js", ".prettierrc.cjs", ".prettierrc.mjs",
+            ".prettierrc.json", ".prettierrc.json5", ".prettierrc.yaml", ".prettierrc.yml",
+            ".prettierrc.toml", "prettier.config.js", "prettier.config.cjs", "prettier.config.mjs",
+          }, { path = ctx.filename, upward = true })[1] ~= nil
+          if has_prettier then return false end
           return vim.fs.find({ "biome.json", "biome.jsonc" }, { path = ctx.filename, upward = true })[1] ~= nil
         end,
       },
