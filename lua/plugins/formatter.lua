@@ -16,7 +16,7 @@ return {
       typescriptreact = js_formatters,
       javascriptreact = js_formatters,
       go = { "gofmt", "gofumt" },
-      rust = { "rustfmt" },
+      rust = { "cargo_fmt" },
       json = { "prettierd", "biome-check" },
       sql = { "sql_formatter" },
       html = { "prettierd", "biome-check" },
@@ -28,6 +28,12 @@ return {
       vue = { "prettierd", "biome-check" },
     },
     formatters = {
+      cargo_fmt = {
+        command = "cargo",
+        args = { "fmt", "--all", "--" },
+        stdin = false,
+        cwd = require("conform.util").root_file { "Cargo.toml" },
+      },
       prettierd = {
         condition = function(self, ctx)
           return vim.fs.find({
@@ -63,7 +69,7 @@ return {
 
     format_on_save = {
       lsp_fallback = false,
-      timeout_ms = 500,
+      timeout_ms = 3000,
       -- only apply the first available formatter
       stop_after_first = true,
     },

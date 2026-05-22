@@ -10,6 +10,12 @@ return {
       copilot = {
         -- model = "gpt-4.1",
         model = "claude-opus-4.6",
+        extra_request_body = {
+          thinking = {
+            type = "enabled",
+            budget_tokens = 8000,
+          },
+        },
       },
     },
     behaviour = {
