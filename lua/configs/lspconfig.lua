@@ -5,7 +5,7 @@ local capabilities = require("nvchad.configs.lspconfig").capabilities
 -- ─── Project-type detection ───────────────────────────────────────────────────
 
 --- Inspect the root directory and return one of:
----   "svelte" | "vue" | "react" | "nestjs" | "unknown"
+---   "svelte" | "vue" | "react" | "astro" | "nestjs" | "unknown"
 local function get_project_type(root)
   if not root then
     return "unknown"
@@ -15,6 +15,13 @@ local function get_project_type(root)
     or vim.fn.filereadable(root .. "/svelte.config.ts") == 1
   then
     return "svelte"
+  end
+  -- Astro: dedicated config file
+  if vim.fn.filereadable(root .. "/astro.config.mjs") == 1
+    or vim.fn.filereadable(root .. "/astro.config.ts") == 1
+    or vim.fn.filereadable(root .. "/astro.config.js") == 1
+  then
+    return "astro"
   end
   -- NestJS: nest-cli.json
   if vim.fn.filereadable(root .. "/nest-cli.json") == 1 then
@@ -54,7 +61,7 @@ local function only_for(allowed_types)
   end
 end
 
-local frontend = { "react", "vue", "svelte" }
+local frontend = { "react", "vue", "svelte", "astro" }
 
 -- ─── Language-specific servers (not framework-sensitive) ─────────────────────
 
@@ -71,7 +78,7 @@ vim.lsp.enable(servers)
 
 -- ─── Frontend-only servers (React / Vue / Svelte) ────────────────────────────
 
-for _, lsp in ipairs { "html", "cssls", "tailwindcss" } do
+for _, lsp in ipairs { "html", "cssls" } do
   vim.lsp.config(lsp, {
     on_attach = on_attach,
     on_init = on_init,
@@ -79,7 +86,36 @@ for _, lsp in ipairs { "html", "cssls", "tailwindcss" } do
     root_dir = only_for(frontend),
   })
 end
-vim.lsp.enable { "html", "cssls", "tailwindcss" }
+vim.lsp.enable { "html", "cssls" }
+
+vim.lsp.config("tailwindcss", {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  root_dir = only_for(frontend),
+  filetypes = {
+    "html", "css", "scss", "less",
+    "javascript", "javascriptreact",
+    "typescript", "typescriptreact",
+    "svelte", "vue", "astro",
+    "rust",
+  },
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          -- clsx / cn / cva / cx patterns
+          { "clsx\\(([^)]*)\\)",     "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          { "cn\\(([^)]*)\\)",       "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          { "cva\\(([^)]*)\\)",      "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          { "cx\\(([^)]*)\\)",       "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+          { "variants\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+        },
+      },
+    },
+  },
+})
+vim.lsp.enable "tailwindcss"
 
 -- ─── Svelte ───────────────────────────────────────────────────────────────────
 
