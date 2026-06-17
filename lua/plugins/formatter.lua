@@ -1,6 +1,27 @@
--- Priority: prettierd > biome-check
+-- Priority: prettierd > oxfmt > biome-check
 -- stop_after_first = true means the first formatter whose condition passes wins.
-local js_formatters = { "prettierd", "biome-check" }
+local prettier_config_files = {
+  ".prettierrc",
+  ".prettierrc.js",
+  ".prettierrc.cjs",
+  ".prettierrc.mjs",
+  ".prettierrc.json",
+  ".prettierrc.json5",
+  ".prettierrc.yaml",
+  ".prettierrc.yml",
+  ".prettierrc.toml",
+  "prettier.config.js",
+  "prettier.config.cjs",
+  "prettier.config.mjs",
+}
+local biome_config_files = { "biome.json", "biome.jsonc" }
+local oxfmt_config_files = { ".oxfmtrc.json", ".oxfmtrc.jsonc", "oxfmt.config.ts" }
+
+local function has_root_file(ctx, files)
+  return vim.fs.find(files, { path = ctx.filename, upward = true })[1] ~= nil
+end
+
+local js_formatters = { "prettierd", "oxfmt", "biome-check" }
 
 return {
   "stevearc/conform.nvim",
@@ -17,15 +38,15 @@ return {
       javascriptreact = js_formatters,
       go = { "gofmt", "gofumt" },
       rust = { "cargo_fmt" },
-      json = { "prettierd", "biome-check" },
+      json = { "prettierd", "oxfmt", "biome-check" },
       sql = { "sql_formatter" },
-      html = { "prettierd", "biome-check" },
-      css = { "prettierd", "biome-check" },
+      html = { "prettierd", "oxfmt", "biome-check" },
+      css = { "prettierd", "oxfmt", "biome-check" },
       -- markdown = { "prettierd" },
       markdown = {},
-      graphql = { "prettierd", "biome-check" },
-      svelte = { "prettierd", "biome-check" },
-      vue = { "prettierd", "biome-check" },
+      graphql = { "prettierd", "oxfmt", "biome-check" },
+      svelte = { "prettierd", "oxfmt", "biome-check" },
+      vue = { "prettierd", "oxfmt", "biome-check" },
     },
     formatters = {
       cargo_fmt = {
@@ -36,33 +57,21 @@ return {
       },
       prettierd = {
         condition = function(self, ctx)
-          return vim.fs.find({
-            ".prettierrc",
-            ".prettierrc.js",
-            ".prettierrc.cjs",
-            ".prettierrc.mjs",
-            ".prettierrc.json",
-            ".prettierrc.json5",
-            ".prettierrc.yaml",
-            ".prettierrc.yml",
-            ".prettierrc.toml",
-            "prettier.config.js",
-            "prettier.config.cjs",
-            "prettier.config.mjs",
-          }, { path = ctx.filename, upward = true })[1] ~= nil
+          return has_root_file(ctx, prettier_config_files)
+        end,
+      },
+      oxfmt = {
+        condition = function(self, ctx)
+          return not has_root_file(ctx, prettier_config_files)
+            and has_root_file(ctx, oxfmt_config_files)
         end,
       },
       ["biome-check"] = {
         require_cwd = true,
         condition = function(self, ctx)
-          -- Only run biome when no prettier config is present (prettier has higher priority)
-          local has_prettier = vim.fs.find({
-            ".prettierrc", ".prettierrc.js", ".prettierrc.cjs", ".prettierrc.mjs",
-            ".prettierrc.json", ".prettierrc.json5", ".prettierrc.yaml", ".prettierrc.yml",
-            ".prettierrc.toml", "prettier.config.js", "prettier.config.cjs", "prettier.config.mjs",
-          }, { path = ctx.filename, upward = true })[1] ~= nil
-          if has_prettier then return false end
-          return vim.fs.find({ "biome.json", "biome.jsonc" }, { path = ctx.filename, upward = true })[1] ~= nil
+          return not has_root_file(ctx, prettier_config_files)
+            and not has_root_file(ctx, oxfmt_config_files)
+            and has_root_file(ctx, biome_config_files)
         end,
       },
     },

@@ -63,6 +63,9 @@ end
 
 local frontend = { "react", "vue", "svelte", "astro" }
 
+local oxlint_config_files = { ".oxlintrc.json", ".oxlintrc.jsonc", "oxlint.config.ts" }
+local oxfmt_config_files = { ".oxfmtrc.json", ".oxfmtrc.jsonc", "oxfmt.config.ts" }
+
 -- ─── Language-specific servers (not framework-sensitive) ─────────────────────
 
 local servers = { "gopls", "jsonls", "astro", "lua_ls", "rust_analyzer" }
@@ -155,6 +158,28 @@ vim.lsp.config("biome", {
   end,
 })
 vim.lsp.enable "biome"
+
+-- ─── Oxc ─────────────────────────────────────────────────────────────────────
+
+vim.lsp.config("oxlint", {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  root_dir = function(fname)
+    return vim.fs.root(fname, oxlint_config_files)
+  end,
+})
+vim.lsp.enable "oxlint"
+
+vim.lsp.config("oxfmt", {
+  on_attach = on_attach,
+  on_init = on_init,
+  capabilities = capabilities,
+  root_dir = function(fname)
+    return vim.fs.root(fname, oxfmt_config_files)
+  end,
+})
+vim.lsp.enable "oxfmt"
 
 -- ─── QML ─────────────────────────────────────────────────────────────────────
 
